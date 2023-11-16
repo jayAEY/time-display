@@ -4,6 +4,10 @@ let second = document.querySelector("#second");
 let amOrPm = document.querySelector("#am-or-pm");
 let date = document.querySelector("#date");
 
+// dayjs.extend(utc);
+// dayjs.extend(timezone);
+// dayjs.tz.guess(); // America/Chicago
+
 // handle date
 let CurrentDate = dayjs().format("dddd, MMMM D, YYYY");
 date.innerText = CurrentDate;
