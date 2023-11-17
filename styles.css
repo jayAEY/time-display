@@ -22,8 +22,7 @@ body {
   min-height: fit-content;
   min-width: max-content;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* align-items: flex-end; */
   outline: 2px solid dimgrey;
   border-radius: 2px;
 }
