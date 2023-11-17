@@ -63,11 +63,6 @@ h1 {
   Basic Modal Styles
 \**************************/
 
-/* .modal {
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
-    helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
-} */
-
 .modal__overlay {
   position: fixed;
   inset: 0;
@@ -88,7 +83,7 @@ h1 {
 .modal__header {
   display: flex;
   justify-content: space-between;
-  column-gap: 20px;
+  /* column-gap: 20px; */
   align-items: flex-start;
 }
 
@@ -103,8 +98,9 @@ h1 {
 }
 
 .modal__content {
+  display: flex;
+  column-gap: 10px;
   padding-top: 8px;
-  padding-bottom: 20px;
 }
 
 #timezone-select {

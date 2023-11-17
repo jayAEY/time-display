@@ -1,7 +1,11 @@
-MicroModal.init({
-  // openTrigger: "data-micromodal-trigger",
-  // closeTrigger: "data-micromodal-trigger",
-});
+MicroModal.init();
+// var utc = require("dayjs/plugin/utc");
+// var timezone = require("dayjs/plugin/timezone");
+
+// dayjs.extend(utc);
+// dayjs.extend(timezone);
+
+console.log(dayjs.tz());
 
 let hour = document.querySelector("#hour");
 let minute = document.querySelector("#minute");
