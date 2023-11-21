@@ -1,11 +1,16 @@
 MicroModal.init();
-// var utc = require("dayjs/plugin/utc");
-// var timezone = require("dayjs/plugin/timezone");
+let dayjs = require("dayjs");
+var utc = require("dayjs/plugin/utc");
+var timezone = require("dayjs/plugin/timezone");
 
-// dayjs.extend(utc);
-// dayjs.extend(timezone);
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
-console.log(dayjs.tz());
+const timestamp = "2014-06-01 12:00";
+const tz = "America/New_York";
+
+console.log(timezone);
+console.log(dayjs.tz.guess());
 
 let hour = document.querySelector("#hour");
 let minute = document.querySelector("#minute");
