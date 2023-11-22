@@ -53,6 +53,21 @@
         console.log(timezone);
         console.log(dayjs.tz.guess());
 
+        const d1 = dayjs.tz("2013-11-18 11:55", "Asia/Taipei");
+        d1.format(); // => 2013-11-18T11:55:00+08:00
+        d1.toISOString(); // => 2013-11-18T03:55:00.000Z
+
+        const d2 = dayjs.utc("2013-11-18 11:55").tz("Asia/Taipei");
+        d2.format(); // => 2013-11-18T19:55:00+08:00
+        d2.toISOString(); // => 2013-11-18T11:55:00.000Z
+
+        // Setting the default timezone
+        dayjs.tz.setDefault("America/New_York");
+
+        // Resetting the default timezone to the system timezone
+        dayjs.tz.setDefault();
+        console.log(d1, d2);
+
         let hour = document.querySelector("#hour");
         let minute = document.querySelector("#minute");
         let second = document.querySelector("#second");
