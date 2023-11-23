@@ -45,6 +45,7 @@
         var timezone = require("dayjs/plugin/timezone");
         dayjs.extend(utc);
         dayjs.extend(timezone);
+
         let hour = document.querySelector("#hour");
         let minute = document.querySelector("#minute");
         let second = document.querySelector("#second");
@@ -53,20 +54,20 @@
         let timeZone = document.querySelector("#location");
         let selectTimeZone = document.querySelector("#select-timezone");
 
-        // handle date and timezones
+        // handle initial date and time zone
         let currentDate = dayjs().format("dddd, MMMM D, YYYY");
         date.innerText = currentDate;
         let currentTimeZone = dayjs.tz.guess();
         timeZone.innerText = currentTimeZone;
 
         selectTimeZone.addEventListener("change", (e) => {
-          // console.log(e.target.value);
           let PST = "America/Vancouver";
           let MST = "America/Edmonton";
           let CST = "America/Winnipeg";
           let EST = "America/Toronto";
           let AST = "America/Halifax";
           let NST = "America/St_Johns";
+          //handle time zone selection
           switch (e.target.value) {
             case "PST":
               currentTimeZone = PST;
@@ -75,7 +76,7 @@
               currentTimeZone = MST;
               break;
             case "CST":
-              currentTimeZone == CST;
+              currentTimeZone = CST;
               break;
             case "EST":
               currentTimeZone = EST;
@@ -87,14 +88,16 @@
               currentTimeZone = NST;
               break;
           }
+          // update display based on selection
+          currentDate = dayjs()
+            .tz(currentTimeZone)
+            .format("dddd, MMMM D, YYYY");
+          date.innerText = currentDate;
+          timeZone.innerText = currentTimeZone;
           setTime(currentTimeZone);
         });
-
         let setTime = (timezone) => {
-          let currentHour = dayjs()
-            .tz(timezone)
-            .hour(dayjs().hour())
-            .format("h");
+          let currentHour = dayjs().tz(timezone).format("h");
           let currentMinute = dayjs().tz(timezone).minute();
           let currentSecond = dayjs().tz(timezone).second();
 
