@@ -2,48 +2,67 @@ MicroModal.init();
 let dayjs = require("dayjs");
 var utc = require("dayjs/plugin/utc");
 var timezone = require("dayjs/plugin/timezone");
-
 dayjs.extend(utc);
 dayjs.extend(timezone);
-
-const timestamp = "2014-06-01 12:00";
-const tz = "America/New_York";
-
-console.log(timezone);
-console.log(dayjs.tz.guess());
-
-const d1 = dayjs.tz("2013-11-18 11:55", "Asia/Taipei");
-d1.format(); // => 2013-11-18T11:55:00+08:00
-d1.toISOString(); // => 2013-11-18T03:55:00.000Z
-
-const d2 = dayjs.utc("2013-11-18 11:55").tz("Asia/Taipei");
-d2.format(); // => 2013-11-18T19:55:00+08:00
-d2.toISOString(); // => 2013-11-18T11:55:00.000Z
-
-// Setting the default timezone
-dayjs.tz.setDefault("America/New_York");
-
-// Resetting the default timezone to the system timezone
-dayjs.tz.setDefault();
-console.log(d1, d2);
-
 let hour = document.querySelector("#hour");
 let minute = document.querySelector("#minute");
 let second = document.querySelector("#second");
 let amOrPm = document.querySelector("#am-or-pm");
 let date = document.querySelector("#date");
 let timeZone = document.querySelector("#location");
+let selectTimeZone = document.querySelector("#select-timezone");
 
-// handle date and timezone
+// handle date and timezones
 let currentDate = dayjs().format("dddd, MMMM D, YYYY");
 date.innerText = currentDate;
-let currentTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+let currentTimeZone = dayjs.tz.guess();
 timeZone.innerText = currentTimeZone;
 
-let setTime = () => {
-  let currentHour = dayjs().hour(dayjs().hour()).format("h");
-  let currentMinute = dayjs().minute();
-  let currentSecond = dayjs().second();
+selectTimeZone.addEventListener("change", (e) => {
+  let PST = "America/Vancouver";
+  let MST = "America/Edmonton";
+  let CST = "America/Winnipeg";
+  let EST = "America/Toronto";
+  let AST = "America/Halifax";
+  let NST = "America/St_Johns";
+  switch (e.target.value) {
+    case 0:
+      e.target.value == "PST";
+      currentTimeZone == setTime(PST);
+      break;
+    case 1:
+      e.target.value == "MST";
+      currentTimeZone == setTime(MST);
+      setTime(MST);
+      break;
+    case 2:
+      e.target.value == "CST";
+      currentTimeZone == setTime(CST);
+      setTime(CST);
+      break;
+    case 3:
+      e.target.value == "EST";
+      currentTimeZone == setTime(EST);
+      setTime(EST);
+      break;
+    case 4:
+      e.target.value == "AST";
+      currentTimeZone == setTime(AST);
+      setTime(AST);
+      break;
+    case 5:
+      e.target.value == "NST";
+      currentTimeZone == setTime(NST);
+      setTime("America/St_Johns");
+      break;
+  }
+  setTime();
+});
+
+let setTime = (timezone) => {
+  let currentHour = dayjs().tz(timezone).hour(dayjs().hour()).format("h");
+  let currentMinute = dayjs().tz(timezone).minute();
+  let currentSecond = dayjs().tz(timezone).second();
 
   // handle am/pm display
   dayjs().hour() > 11 && (amOrPm.innerText = "P.M.");
@@ -58,5 +77,5 @@ let setTime = () => {
 };
 
 setInterval(() => {
-  setTime();
+  setTime(currentTimeZone);
 }, 1000);
