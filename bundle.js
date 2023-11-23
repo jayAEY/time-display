@@ -60,7 +60,7 @@
         timeZone.innerText = currentTimeZone;
 
         selectTimeZone.addEventListener("change", (e) => {
-          console.log(e.target.value);
+          // console.log(e.target.value);
           let PST = "America/Vancouver";
           let MST = "America/Edmonton";
           let CST = "America/Winnipeg";
@@ -68,38 +68,26 @@
           let AST = "America/Halifax";
           let NST = "America/St_Johns";
           switch (e.target.value) {
-            case 0:
-              e.target.value == "PST";
+            case "PST":
               currentTimeZone = PST;
-              setTime(PST);
               break;
-            case 1:
-              e.target.value == "MST";
+            case "MST":
               currentTimeZone = MST;
-              setTime(MST);
               break;
-            case 2:
-              e.target.value == "CST";
+            case "CST":
               currentTimeZone == CST;
-              setTime(CST);
               break;
-            case 3:
-              e.target.value == "EST";
+            case "EST":
               currentTimeZone = EST;
-              setTime(EST);
               break;
-            case 4:
-              e.target.value == "AST";
+            case "AST":
               currentTimeZone = AST;
-              setTime(AST);
               break;
-            case 5:
-              e.target.value == "NST";
+            case "NST":
               currentTimeZone = NST;
-              setTime(NST);
               break;
           }
-          setTime();
+          setTime(currentTimeZone);
         });
 
         let setTime = (timezone) => {
