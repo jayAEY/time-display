@@ -26,33 +26,35 @@ selectTimeZone.addEventListener("change", (e) => {
   let EST = "America/Toronto";
   let AST = "America/Halifax";
   let NST = "America/St_Johns";
+
   //handle time zone selection
   switch (e.target.value) {
-    case "PST":
+    case "Pacific (PST)":
       currentTimeZone = PST;
       break;
-    case "MST":
+    case "Mountain (MST)":
       currentTimeZone = MST;
       break;
-    case "CST":
+    case "Central (CST)":
       currentTimeZone = CST;
       break;
-    case "EST":
+    case "Eastern (EST)":
       currentTimeZone = EST;
       break;
-    case "AST":
+    case "Atlantic (AST)":
       currentTimeZone = AST;
       break;
-    case "NST":
+    case "Newfoundland (NST)":
       currentTimeZone = NST;
       break;
   }
   // update display based on selection
   currentDate = dayjs().tz(currentTimeZone).format("dddd, MMMM D, YYYY");
   date.innerText = currentDate;
-  timeZone.innerText = currentTimeZone;
+  timeZone.innerText = e.target.value;
   setTime(currentTimeZone);
 });
+
 let setTime = (timezone) => {
   let currentHour = dayjs().tz(timezone).format("h");
   let currentMinute = dayjs().tz(timezone).minute();
